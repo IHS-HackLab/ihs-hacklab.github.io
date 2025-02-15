@@ -1,2 +1,2 @@
-# IHS-Code-Lab.github.io
-the official website for the code lab
+# IHS-Hacklab.github.io
+the official website for hacklab
