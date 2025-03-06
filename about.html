@@ -5,23 +5,51 @@
         <link rel="icon" type="image/x-icon" href="hacklab.png">
         <link rel="stylesheet" href="theme.css">
         <link rel="stylesheet" href="fonts.css">
+        <link rel="stylesheet" href="main.css">
     </head>
     <body>
         <main>
-            <div id="sidebar">
-                <ul>
-                    <li><a href="index.html"><div class="box">Home</div></a></li>
-                    <li><a href="about.html"><div class="box">About</div></a></li>
-                    <li><a href="members.html"><div class="box">Members</div></a></li>
-                </ul>
+            <div id="topbar" class="inset">
+                <h1 class="ultratitle">Welcome to the IHS Hack Lab</h1>
+                <div id="buttons">
+                    <form action="index.html">
+                        <button type="submit" class="lg" value="Home">Home</button>
+                    </form>
+                    <form action="about.html">
+                        <button type="submit" class="lg" value="About">About</button>
+                    </form>
+                    <form action="members.html">
+                        <button type="submit" class="lg" value="Members">Members</button>
+                    </form>
+                    <form action="https://forms.gle/eBdScuAHDvufRwNy8" target="_blank">
+                        <button type="submit" class="lg outline" value="SIGN UP">SIGN UP</button>
+                    </form>
+                </div>
             </div>
-            <div class="box" id="mainbox">
-                <h1>About the HACK LAB</h1>
+            <h1 class="bodyheader">About the HACK LAB</h1>
+            <div class="container">
                 <p>
-                    We are the HACK LAB!!!!!!!!!!!!!!<br>
-                    We like, uhh, hack and stuff
+                    We are the official <a href="https://hackclub.com/" target="_blank">Hack Club</a> of <a href="https://ihs.imperialusd.org/" target="_blank">Imperial High School</a>.
+                    <br><br>
+                    <img src="hacklab thisisourlogo.png" width="225" style="margin-right: 30px;">
+                    <img src="hackclublogo.png" width="225">
+                    <br><br>
+
+                    We are a club dedicated to anything programming, whether through Hackathons, competitions, other
+                    coding challenges or what have you.
+
                 </p>
             </div>
+            <h1 class="bodyheader">FAQ</h1>
+            <div class="container">
+                <p>
+                    <h2>Why is it called the 'Hack Lab' and not the 'Hack Club'?</h2>
+                    The original name for the club (before we integrated into Hack Club) was the <i>Code Lab.</i>
+                    When deciding on a new name, we thought it would be unique to give it another name that reflected
+                    our roots.
+                </p>
+            </div>
+            <dot></dot>
         </main>
     </body>
 </html>
