@@ -64,10 +64,39 @@ dot {
 .container h2 {
     margin-bottom: 15px;
 }
+.container h1 {
+    margin-top: 50px;
+    margin-bottom: 25px;
+}
 
 
 .noselect {
     pointer-events: none;
     user-select: none;
     -moz-user-select: none;
+}
+
+
+.memberpanel {
+    display: flex;
+    margin-top: 25px;
+    justify-content: center;
+}
+.memberpanel > img {
+    border-radius: 50%;
+    width: 250px;
+    height: 250px;
+    margin-right: 25px;
+}
+.memberpanel > p {
+    text-align: left;
+}
+.memberpanel .name {
+    font-size: 28px;
+}
+.memberpanel .position {
+    font-style: italic;
+}
+.memberpanel a {
+    margin-top: 50px;
 }
