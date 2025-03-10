@@ -1,5 +1,7 @@
 @layer hack-club-theme {
   :root {
+    --s: 1px;
+
     --darker: #121217;
     --dark: #17171d;
     --darkless: #252429;
@@ -35,25 +37,25 @@
     --breakpoint-l: 96em;
     --breakpoint-xl: 128em;
     --spacing-0: 0px;
-    --spacing-1: 4px;
-    --spacing-2: 8px;
-    --spacing-3: 16px;
-    --spacing-4: 32px;
-    --spacing-5: 64px;
-    --spacing-6: 128px;
-    --spacing-7: 256px;
-    --spacing-8: 512px;
-    --font-1: 12px;
-    --font-2: 16px;
-    --font-3: 20px;
-    --font-4: 24px;
-    --font-5: 32px;
-    --font-6: 48px;
-    --font-7: 64px;
-    --font-8: 96px;
-    --font-9: 128px;
-    --font-10: 160px;
-    --font-11: 192px;
+    --spacing-1: calc(4 * var(--s));
+    --spacing-2: calc(8 * var(--s));
+    --spacing-3: calc(16 * var(--s));
+    --spacing-4: calc(32 * var(--s));
+    --spacing-5: calc(64 * var(--s));
+    --spacing-6: calc(128 * var(--s));
+    --spacing-7: calc(256 * var(--s));
+    --spacing-8: calc(512 * var(--s));
+    --font-1: calc(12 * var(--s));
+    --font-2: calc(16 * var(--s));
+    --font-3: calc(20 * var(--s));
+    --font-4: calc(24 * var(--s));
+    --font-5: calc(32 * var(--s));
+    --font-6: calc(48 * var(--s));
+    --font-7: calc(64 * var(--s));
+    --font-8: calc(96 * var(--s));
+    --font-9: calc(128 * var(--s));
+    --font-10: calc(160 * var(--s));
+    --font-11: calc(192 * var(--s));
     --line-height-limit: 0.875;
     --line-height-title: 1;
     --line-height-heading: 1.125;
@@ -65,26 +67,26 @@
     --font-weight-heading: var(--font-weight-bold);
     --letter-spacing-title: -0.009em;
     --letter-spacing-headline: 0.009em;
-    --size-wide-plus: 2048px;
-    --size-wide: 1536px;
-    --size-layout-plus: 1200px;
-    --size-layout: 1024px;
-    --size-copy-ultra: 980px;
-    --size-copy-plus: 768px;
-    --size-copy: 680px;
-    --size-narrow-plus: 600px;
-    --size-narrow: 512px;
-    --radii-small: 4px;
-    --radii-default: 8px;
-    --radii-extra: 12px;
-    --radii-ultra: 16px;
-    --radii-circle: 99999px;
-    --shadow-text: 0 1px 2px rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0, 0, 0, 0.125);
-    --shadow-small: 0 1px 2px rgba(0, 0, 0, 0.0625),
-      0 2px 4px rgba(0, 0, 0, 0.0625);
-    --shadow-card: 0 4px 8px rgba(0, 0, 0, 0.125);
-    --shadow-elevated: 0 1px 2px rgba(0, 0, 0, 0.0625),
-      0 8px 12px rgba(0, 0, 0, 0.125);
+    --size-wide-plus: calc(2048 * var(--s));
+    --size-wide: calc(1536 * var(--s));
+    --size-layout-plus: calc(1200 * var(--s));
+    --size-layout: calc(1024 * var(--s));
+    --size-copy-ultra: calc(980 * var(--s));
+    --size-copy-plus: calc(768 * var(--s));
+    --size-copy: calc(680 * var(--s));
+    --size-narrow-plus: calc(600 * var(--s));
+    --size-narrow: calc(512 * var(--s));
+    --radii-small: calc(4 * var(--s));
+    --radii-default: calc(8 * var(--s));
+    --radii-extra: calc(12 * var(--s));
+    --radii-ultra: calc(16 * var(--s));
+    --radii-circle: calc(99999 * var(--s));
+    --shadow-text: 0 calc(1 * var(--s)) calc(2 * var(--s)) rgba(0, 0, 0, 0.25), 0 calc(2 * var(--s)) calc(4 * var(--s)) rgba(0, 0, 0, 0.125);
+    --shadow-small: 0 calc(1 * var(--s)) calc(2 * var(--s)) rgba(0, 0, 0, 0.0625),
+      0 calc(2 * var(--s)) calc(4 * var(--s)) rgba(0, 0, 0, 0.0625);
+    --shadow-card: 0 calc(4 * var(--s)) calc(8 * var(--s)) rgba(0, 0, 0, 0.125);
+    --shadow-elevated: 0 calc(1 * var(--s)) calc(2 * var(--s)) rgba(0, 0, 0, 0.0625),
+      0 calc(8 * var(--s)) calc(12 * var(--s)) rgba(0, 0, 0, 0.125);
   }
   
   body {
@@ -194,7 +196,7 @@
     font-size: var(--font-2);
     background: none;
     color: var(--muted);
-    border: 1px solid currentcolor;
+    border: calc(1 * var(--s)) solid currentcolor;
     font-weight: var(--font-weight-body);
   }
   
@@ -220,10 +222,10 @@
     line-height: inherit;
     -webkit-text-decoration: none;
     text-decoration: none;
-    padding-left: 16px;
-    padding-right: 16px;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-left: calc(16 * var(--s));
+    padding-right: calc(16 * var(--s));
+    padding-top: calc(8 * var(--s));
+    padding-bottom: calc(8 * var(--s));
     color: var(--theme-ui-colors-white, #ffffff);
     background-color: var(--theme-ui-colors-primary, #ec3750);
     border: 0;
@@ -248,7 +250,7 @@
   button.outline {
     background: none;
     color: var(--primary);
-    border: 2px solid currentcolor;
+    border: calc(2 * var(--s)) solid currentcolor;
   }
   
   button.cta {
@@ -343,9 +345,9 @@
   
   .form-hidden {
     position: absolute;
-    height: 1px;
-    width: 1px;
-    clip: rect(1px, 1px, 1px, 1px);
+    height: calc(1 * var(--s));
+    width: calc(1 * var(--s));
+    clip: rect(calc(1 * var(--s)), calc(1 * var(--s)), calc(1 * var(--s)), calc(1 * var(--s)));
     white-space: nowrap;
   }
   
@@ -417,7 +419,7 @@
   
   hr {
     border: 0;
-    border-bottom: 1px solid var(--border);
+    border-bottom: calc(1 * var(--s)) solid var(--border);
   }
   
   a {
@@ -492,20 +494,20 @@
   table > th,
   table > td {
     text-align: left;
-    padding: 4px;
-    padding-left: 0px;
+    padding: calc(4 * var(--s));
+    padding-left: calc(0 * var(--s));
     border-color: var(--border);
     border-bottom-style: solid;
   }
   
   th {
     vertical-align: bottom;
-    border-bottom-width: 2px;
+    border-bottom-width: calc(2 * var(--s));
   }
   
   td {
     vertical-align: top;
-    border-bottom-width: 1px;
+    border-bottom-width: calc(1 * var(--s));
   }
   
   
