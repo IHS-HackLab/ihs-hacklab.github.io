@@ -117,3 +117,20 @@ dot {
         --s: 0.2vmin;
     }
 }
+
+
+#dynamictopbar {
+    position: fixed;
+    top: 0;
+    transform: translateY(-100%);
+    left: 0;
+    width: 100%;
+    height: calc(50 * var(--s));
+    background-color: #ffffffc0;
+    backdrop-filter: blur(calc(10 * var(--s)));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: calc(20 * var(--s));
+    transition: 0.2s ease transform;
+}
