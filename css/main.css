@@ -128,9 +128,13 @@ dot {
     height: calc(50 * var(--s));
     background-color: #ffffffc0;
     backdrop-filter: blur(calc(10 * var(--s)));
+    transition: 0.2s ease transform;
+}
+
+#dynamicbuttons {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: calc(20 * var(--s));
-    transition: 0.2s ease transform;
+    height: 100%;
 }
