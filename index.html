@@ -1,48 +1,225 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>HACK LAB</title>
+        <title>The IHS Hack Lab</title>
         <link rel="icon" type="image/x-icon" href="hacklab.png">
-        <link rel="stylesheet" href="css/theme.css?version=2">
-        <link rel="stylesheet" href="css/fonts.css?version=2">
-        <link rel="stylesheet" href="css/main.css?version=2">
+        <style>
+            :root {
+                ---: 1px;
+            }
+            @media (max-width: 1024px) {
+                :root {
+                    ---: 0.12vh;
+                }
+                #links a {
+                    font-size: calc(55px - 1vw);
+                }
+            }
+
+            body {
+                background-color: #000000;
+                font-family: 'Times New Roman', Times, serif;
+                color: white;
+                font-size: calc(var(---) * 16);
+            }
+
+            #headlines {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100vw;
+                height: calc(var(---) * 25);
+                font-size: calc(var(---) * 23);
+                color: #00ff00;
+                background-color: black;
+                align-content: center;
+                white-space: nowrap;
+                overflow: hidden;
+            }
+            #headline_text {
+                position: relative;
+                left: 0;
+            }
+
+            #main {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                top: calc(50% - var(---) * 300);
+                text-align: center;
+                width: 600px;
+            }
+            #main #logo {
+                width: calc(var(---) * 250);
+            }
+
+            #title {
+                font-size: calc(var(---) * 45);
+            }
+        </style>
     </head>
     <body>
-        <div id="dynamictopbar">
-            <div id="dynamicbuttons">
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="members.html">Members</a>
-                <a href="https://forms.gle/eBdScuAHDvufRwNy8" target="_blank">Sign Up</a>
+
+        <div id="headlines">
+            <noscript>
+                Since you don't have Javascript enabled, just pretend there are some important messages up here.
+            </noscript>
+            <span id="headline_text"></span>
+        </div>
+
+        <div id="main">
+            <img id="logo" src="hacklab.png">
+            <p id="title">
+                <noscript>
+                    Welcome to the IHS Hack Lab
+                </noscript>
+            </p>
+            <div id="links">
+                <a href="javascript:void(0);" onclick="menu('about')">About Us</a>&nbsp;
+                <a href="javascript:void(0);" onclick="menu('members')">Our Members</a>
             </div>
         </div>
 
-        <main>
-            <div id="topbar" class="inset">
-                <h1 class="ultratitle">Welcome to the IHS Hack Lab</h1>
-                <div id="buttons">
-                    <form action="index.html">
-                        <button type="submit" class="lg" value="Home">Home</button>
-                    </form>
-                    <form action="about.html">
-                        <button type="submit" class="lg" value="About">About</button>
-                    </form>
-                    <form action="members.html">
-                        <button type="submit" class="lg" value="Members">Members</button>
-                    </form>
-                    <form action="https://forms.gle/eBdScuAHDvufRwNy8" target="_blank">
-                        <button type="submit" class="lg outline" value="SIGN UP">SIGN UP</button>
-                    </form>
-                </div>
-            </div>
-            <h1 class="bodyheader">Headlines</h1>
-            <div class="container">
-                <h2>(03/02/25) NAME CHANGE & WEBSITE CREATION</h2>
-                <p>We changed the name from the Code Lab to the Hack Lab and introduced our new website.</p>
-            </div>
-            <dot></dot>
-        </main>
+        <script id="headlinescript">
+            const headlines_ele = document.getElementById('headlines');
+            const headlinetext_ele = document.getElementById('headline_text');
 
-        <script src="js/scroll_topbar.js"></script>
+            const headlines = [
+                'WELCOME TO THE IHS HACK LAB',
+                'THE WEBSITE HAS BEEN UPDATED',
+            ]
+            let w = 0;
+
+            function init_headline() {
+                headlinetext_ele.innerHTML = '';
+                for (let hl of headlines) {
+                    headlinetext_ele.innerHTML += `<span>${hl}<span>&nbsp;&nbsp;::&nbsp;&nbsp;`;
+                }
+                let full = headlinetext_ele.innerHTML;
+                //console.log(headlinetext_ele.offsetWidth);
+                w = headlinetext_ele.offsetWidth;
+                let amt = ((headlines_ele.offsetWidth / w) | 0) + 2;
+
+                for (let i = 1; i < amt; i++) {
+                    headlinetext_ele.innerHTML += full;
+                }
+            }
+
+            let st = Date.now();
+            function update_headline() {
+                /*console.log('afsfefwef');
+                requestAnimationFrame(() => {
+                    headlinetext_ele.style.left = `${-w}px`;
+                    requestAnimationFrame(() => {
+                        headlinetext_ele.style.transition = `all ${w/100}s linear`;
+                        requestAnimationFrame(() => {
+                            headlinetext_ele.style.left = `0px`;
+                            setTimeout(update_headline, (w/100)*1000);
+                            requestAnimationFrame(() => {
+                                headlinetext_ele.style.transition = ``;
+                            })
+                        })
+                    })
+                })*/
+
+                headlinetext_ele.style.left = `${(Date.now() - st)/5 % w - w}px`;
+            }
+
+            init_headline();
+            onresize = init_headline;
+            update_headline();
+        </script>
+        <script id="titlescript">
+            const text = 'Welcome to the IHS Hack Lab';
+            const title_ele = document.getElementById('title');
+            function do_title() {
+                let incomplete_title = '';
+                for (let i in text) {
+                    setTimeout(() => {
+                        title_ele.innerHTML += text[i];
+                    }, i * 50);
+                }
+            }
+            do_title();
+        </script>
+        <script id="memberscript">
+            const members = [
+                {
+                    name: 'Ashton Havens',
+                    short: 'Ashton',
+                    role: 'President',
+                    membersite: 'membersites/ashton/ashton.html',
+                    quote: '[[insert inspirational quote here]]',
+                    staff: true,
+                    pic: 'memberphotos/ashton_img.png',
+                },
+                {
+                    name: 'Samuel Walker',
+                    short: 'Sam',
+                    role: 'Secretary',
+                    membersite: null,
+                    quote: null,
+                    staff: true,
+                    pic: 'memberphotos/sam_img.png',
+                },
+                {
+                    name: 'Zee Valenzuela',
+                    short: 'Zee',
+                    role: 'Treasurer',
+                    membersite: null,
+                    quote: null,
+                    staff: true,
+                    pic: 'memberphotos/zee_img.png',
+                },
+                {
+                    name: 'Isabel Lepe',
+                    short: 'Isabel',
+                    role: 'Marketeer',
+                    membersite: null,
+                    quote: null,
+                    staff: true,
+                    pic: 'memberphotos/isabel_img.png',
+                },
+                {
+                    name: 'Cody Shultz',
+                    short: 'Cody',
+                    role: 'Mascot(?)',
+                    membersite: null,
+                    quote: null,
+                    staff: true,
+                    pic: 'memberphotos/cody_img.png',
+                },
+                {
+                    name: 'Rose Vargas',
+                    short: 'Rose',
+                    role: 'Member at Large',
+                    membersite: null,
+                    quote: null,
+                    staff: true,
+                    pic: 'memberphotos/rose_img.png',
+                },
+                {
+                    name: 'Rabi Islam',
+                    short: 'Cody',
+                    role: 'Design Partner',
+                    membersite: null,
+                    quote: 'When tempted to fight fire with fire, remember that the fire department generally uses water.',
+                    staff: false,
+                    pic: 'memberphotos/rabi_img.png',
+                },
+            ]
+        </script>
+        <script id="linksscript">
+            function menu(place) {
+                console.log(place);
+            }
+        </script>
+        <script id="frame">
+            function frame() {
+                update_headline();
+                requestAnimationFrame(frame);
+            }
+            frame();
+        </script>
     </body>
 </html>
