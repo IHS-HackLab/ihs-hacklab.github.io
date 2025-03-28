@@ -3,8 +3,10 @@
     <head>
         <title>The IHS Hack Lab</title>
         <link rel="icon" type="image/x-icon" href="hacklab.png">
-
         <link rel="stylesheet" href="css/fonts.css">
+
+        <script src="https://kit.fontawesome.com/82a70df38e.js" crossorigin="anonymous"></script>
+
         <style>
             :root {
                 ---: 1px;
@@ -14,10 +16,17 @@
                     ---: 0.12vh;
                 }
                 #links a {
-                    font-size: calc(var(---) * 45 - 2vw);
+                    font-size: calc(var(---) * 50 - 2vw);
+                    flex-grow: 1;
+                    text-align: center;
                 }
-                #links {
+                #dirbuttons {
                     top: calc(var(---) * 600 - 10vw) !important;
+                }
+            }
+            @media (min-height: 175vw) {
+                #links a {
+                    font-size: 7vw !important;
                 }
             }
 
@@ -42,6 +51,7 @@
                 align-content: center;
                 white-space: nowrap;
                 overflow: hidden;
+                user-select: none;
             }
             #headline_text {
                 position: relative;
@@ -57,6 +67,7 @@
                 width: 600px;
                 transition: all 0.5s ease;
                 overflow: hidden;
+                user-select: none;
             }
             .main #logo {
                 width: calc(var(---) * 250);
@@ -65,6 +76,7 @@
             .main.visible {
                 opacity: 1;
                 transform: translateX(-50%);
+                user-select:text;
             }
             .main.left {
                 opacity: 0;
@@ -80,7 +92,7 @@
                 font-weight: bold;
             }
 
-            #links {
+            #dirbuttons {
                 position: absolute;
                 left: 50%;
                 transform: translateX(-50%);
@@ -89,11 +101,54 @@
                 font-size: calc(var(---) * 24);
             }
 
+            .dirbutton {
+                background-color: transparent;
+                border: 2px #4e4e4e solid;
+                border-radius: calc(var(---) * 5);
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: calc(var(---) * 60);
+                height: calc(var(---) * 40);
+                color: white;
+                font-size: calc(var(---) * 38);
+                padding: 0;
+                align-content: center;
+            }
+            .dirbutton:hover {
+                background-color: white;
+                border: none;
+                color: black;
+            }
+            #leftbutton {
+                right: calc(50% + 300px + var(---)*50);
+            }
+            #rightbutton {
+                left: calc(50% + 300px + var(---)*50);
+            }
+
+            #links {
+                /*display: none;*/
+                top: calc(25 * var(---));
+                position:absolute;
+                display: flex;
+                width: 100%;
+                align-items: center;
+                justify-content: center;
+            }
+            #links a {
+                white-space: nowrap;
+            }
+
+
             :link {
                 color: #96d696;
             }
             :link:active {
                 color: #59da59;
+            }
+            a:visited {
+                color: #557c55;
             }
 
             main {
@@ -103,6 +158,10 @@
                 left: 0;
                 width: 100vw;
                 height: 100vh;
+            }
+
+            img {
+                user-select: none;
             }
         </style>
     </head>
@@ -134,10 +193,13 @@
             </div>
 
             <div id="links">
-                <a href="javascript:void(0);" onclick="menu('home')">Home</a><br>
-                <a href="javascript:void(0);" onclick="menu('about')">About Us</a><br>
-                <a href="javascript:void(0);" onclick="menu('members')">Our Members</a>
+                <a href="#home" onclick="menu('home')">Home</a>
+                <a href="#about" onclick="menu('about')">About Us</a>
+                <a href="#members" onclick="menu('members')">Our Members</a>
             </div>
+
+            <button id="leftbutton" class="dirbutton" onclick="cycle(false)"><i class="fa-solid fa-arrow-left"></i></button>
+            <button id="rightbutton" class="dirbutton" onclick="cycle(true)"><i class="fa-solid fa-arrow-right"></i></button>
         </main>
 
         <script id="headlinescript">
@@ -275,6 +337,7 @@
                 'about',
                 'members',
             ];
+            var cblk = 0;
 
             function menu(place) {
                 let blk = document.getElementById(`${place}blk`);
@@ -290,6 +353,21 @@
                         document.getElementById(b+'blk').className = 'main right';
                     }
                 }
+            }
+
+            function cycle(dir) {
+                if (dir) {
+                    cblk += 1;
+                    if (cblk >= blks.length) {
+                        cblk -= 1;
+                    }
+                } else {
+                    cblk -= 1;
+                    if (cblk < 0) {
+                        cblk += 1;
+                    }
+                }
+                menu(blks[cblk]);
             }
 
             
