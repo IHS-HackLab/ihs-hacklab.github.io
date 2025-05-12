@@ -1,48 +1,581 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>HACK LAB</title>
+        <title>The IHS Hack Lab</title>
         <link rel="icon" type="image/x-icon" href="hacklab.png">
-        <link rel="stylesheet" href="css/theme.css?version=2">
-        <link rel="stylesheet" href="css/fonts.css?version=2">
-        <link rel="stylesheet" href="css/main.css?version=2">
+        <link rel="stylesheet" href="css/fonts.css">
+
+        <script src="https://kit.fontawesome.com/82a70df38e.js" crossorigin="anonymous"></script>
+
+        <style>
+            :root {
+                ---: 1px;
+            }
+            @media (max-width: 1024px) {
+                :root {
+                    ---: 0.12vh;
+                }
+                #links {
+                    display: flex !important;
+                }
+                #links a {
+                    font-size: calc(var(---) * 50 - 2vw);
+                    flex-grow: 1;
+                    text-align: center;
+                }
+                .dirbutton {
+                    display: none;/*
+                    top: calc(var(---) * 600 - 10vw) !important;*/
+                }
+                .main {
+                    width: 85% !important;
+                    top: calc(50% - var(---) * 300) !important;
+                }
+                .member {
+                    margin-left: 0;
+                }
+            }
+            @media (min-height: 175vw) {
+                #links a {
+                    font-size: 7vw !important;
+                }
+            }
+
+            body {
+                background-color: #000000;
+                background-image: linear-gradient(to right, #000000, #011400, #000000);
+                color: #41ff41;
+                font-size: calc(var(---) * 16);
+                overflow-x: hidden;
+                font-family: "Phantom Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            }
+            
+            #headlines {
+                position: fixed;
+                left: 0;
+                top: 0;
+                width: 100vw;
+                height: calc(var(---) * 25);
+                font-size: calc(var(---) * 23);
+                color: #00ff00;
+                align-content: center;
+                white-space: nowrap;
+                overflow: hidden;
+                user-select: none;
+                z-index: 100;
+
+                text-shadow: 0 0 calc(var(---) * 8) black, 0 0 calc(var(---) * 8) black, 0 0 calc(var(---) * 8) black;
+            }
+            #headline_text {
+                position: relative;
+                left: 0;
+            }
+
+            .main {
+                position: absolute;
+                transform: translateX(-50%);
+                top: calc(50% - var(---) * 350);
+                left: 50%;
+                text-align: center;
+                width: 600px;
+                user-select: none;
+                filter: blur(calc(var(---) * 3)) saturate(0.2);
+                height: calc(50% + var(---) * 350);
+                overflow: hidden;
+                pointer-events: none;
+            }
+            .main #logo {
+                width: calc(var(---) * 250);
+            }
+            
+            .main.visible {
+                opacity: 1;
+                transform: translateX(-50%);
+                user-select:text;
+                filter: blur(0) saturate(1);
+                height: auto;
+                overflow: visible;
+                pointer-events: auto;
+            }
+            .main.left {
+                opacity: 0;
+                transform: translateX(-150%);
+            }
+            .main.right {
+                opacity: 0;
+                transform: translateX(50%);
+            }
+
+            .main p {
+                color: white;
+                font-size: calc(var(---) * 20);
+            }
+
+            #title {
+                font-size: calc(var(---) * 45);
+                font-weight: bold;
+            }
+
+            #dirbuttons {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                text-align: center;
+                top: calc(var(---) * 500);
+                font-size: calc(var(---) * 24);
+            }
+
+            .dirbutton {
+                background-color: transparent;
+                border: 2px #0e1d0d solid;
+                border-radius: calc(var(---) * 5);
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: calc(var(---) * 60);
+                height: calc(var(---) * 60);
+                color: white;
+                font-size: calc(var(---) * 38);
+                padding: 0;
+                align-content: center;
+                box-shadow: 0 calc(var(---) * 2) calc(var(---) * 10) black;
+                transition: 0.25s ease;
+            }
+            .dirbutton.disabled {
+                filter: saturate(0);
+                background-color: #00000050;
+            }
+            .dirbutton:hover:not(.disabled) {
+                transform: translateY(-55%);
+                background-color: white;
+                border: none;
+                color: black;
+            }
+            .dirbutton:active:not(.disabled) {
+                transform: translateY(-52%);
+            }
+
+            #leftbutton {
+                right: calc(50% + 300px + var(---)*50);
+            }
+            #rightbutton {
+                left: calc(50% + 300px + var(---)*50);
+            }
+
+            #links {
+                display: none;
+                top: calc(30 * var(---));
+                position:absolute;
+                width: 100%;
+                align-items: center;
+                justify-content: center;
+            }
+            #links a {
+                white-space: nowrap;
+            }
+
+
+            :link {
+                color: #96d696;
+            }
+            :link:active {
+                color: #59da59;
+            }
+            a:visited {
+                color: #557c55;
+            }
+
+            main {
+                overflow-x: hidden;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                scrollbar-gutter: stable both-edges;
+            }
+
+            img {
+                user-select: none;
+                filter: drop-shadow(0 calc(var(---) * 3) calc(var(---) * 5) black);
+            }
+            
+            #title, .blkheader {
+                text-shadow: 0 calc(var(---) * 3) calc(var(---) * 5) black;
+            }
+
+            #aboutblk p img {
+                width: calc(var(---) * 150);
+            }
+            .blkheader {
+                font-size: calc(var(---) * 40);
+            }
+            .main h1:not(.blkheader):not(#title) {
+                color: #3bb13b;
+                font-weight: 500;
+            }
+            h2 {
+                font-weight: 500;
+                font-size: calc(var(---) * 24);
+                margin-top: calc(var(---) * 5);
+                margin-bottom: calc(var(---) * 5);
+                color: #a1ff9e;
+            }
+
+            dot {
+                position: relative;
+                width: 1px;
+                height: 1px;
+                top: calc(var(---) * 49);
+                background-color: #000000;
+                display: block;
+            }
+
+
+            .member {
+                display: flex;
+                justify-content: left;
+                margin-top: calc(var(---) * 30);
+                margin-left: calc(var(---) * 40);
+                gap: calc(var(---) * 20);
+            }
+            .member:first-of-type {
+                margin-top: calc(var(---) * 75);
+            }
+            .member p {
+                margin: 0;
+                font-size: calc(var(---) * 20);
+                text-align: left;
+                color: #cacaca;
+            }
+            .member p span {
+                font-size: calc(var(---) * 25);
+                color: #ffffff;
+            }
+            .member img {
+                width: calc(var(---) * 175);
+                height: calc(var(---) * 175);
+                border-radius: 50%;
+            }
+        </style>
     </head>
     <body>
-        <div id="dynamictopbar">
-            <div id="dynamicbuttons">
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="members.html">Members</a>
-                <a href="https://forms.gle/eBdScuAHDvufRwNy8" target="_blank">Sign Up</a>
-            </div>
-        </div>
 
         <main>
-            <div id="topbar" class="inset">
-                <h1 class="ultratitle">Welcome to the IHS Hack Lab</h1>
-                <div id="buttons">
-                    <form action="index.html">
-                        <button type="submit" class="lg" value="Home">Home</button>
-                    </form>
-                    <form action="about.html">
-                        <button type="submit" class="lg" value="About">About</button>
-                    </form>
-                    <form action="members.html">
-                        <button type="submit" class="lg" value="Members">Members</button>
-                    </form>
-                    <form action="https://forms.gle/eBdScuAHDvufRwNy8" target="_blank">
-                        <button type="submit" class="lg outline" value="SIGN UP">SIGN UP</button>
-                    </form>
-                </div>
+            <div id="headlines">
+                <noscript>
+                    Since you don't have JavaScript enabled, just pretend there are some important messages up here.
+                </noscript>
+                <span id="headline_text"></span>
             </div>
-            <h1 class="bodyheader">Headlines</h1>
-            <div class="container">
-                <h2>(03/02/25) NAME CHANGE & WEBSITE CREATION</h2>
-                <p>We changed the name from the Code Lab to the Hack Lab and introduced our new website.</p>
+
+            <div id="homeblk" class="main visible">
+                <img id="logo" src="hacklab.png">
+                <h1 id="title">
+                    <noscript>
+                        Welcome to the IHS Hack Lab
+                    </noscript>
+                </h1>
+                <p>
+                    <br><br><br>
+                    <a href="https://forms.gle/eBdScuAHDvufRwNy8" target="_blank"><img src="signup.png" style="width: calc(var(---) * 350); height: calc(var(---) * 200)"></a>
+                </p>
+
+                <dot></dot>
             </div>
-            <dot></dot>
+            
+            <div id="aboutblk" class="main right">
+                <h1 class="blkheader">About Us</h1>
+                <p>
+                    We are the official <a href="https://hackclub.com/" target="_blank">Hack Club</a> of <a href="https://ihs.imperialusd.org/" target="_blank">Imperial High School</a>.
+                    <br><br>
+                    <img src="hacklab thisisourlogo.png" style="margin-right: 30px;">
+                    <img src="hackclublogo.png">
+                    <br><br>
+                    We are a club dedicated to anything programming-related. We participate in Hackathons, collaborate on projects, and create games.
+                </p>
+                <br><br>
+                <h1>What is Hack Club?</h1>
+                <p>
+                    Hack Club is an international organization of teenagers who like to program. Tens of thousands of students from
+                    around the world participate in different coding-related activities through Hack Club, such as Hackathons and
+                    other projects.
+                    <br><br>
+                    You can find their website <a href="https://hackclub.com/">here</a>.
+                    <br><br>
+                    The Hack Lab is Imperial High School's Hack Club. As an official Hack Club, we will participate in
+                    various Hack Club activities, such as <a href="https://boba.hackclub.com/">Boba Drops</a>,
+                    <a href="https://fraps.hackclub.com/">Hackaccino</a>, and <a href="https://sprig.hackclub.com/">Sprig</a>.
+                    <br><br>
+                    In the future, we may participate in real-life programming activites called <a href="https://hackclub.com/hackathons/">Hackathons</a>.
+                </p>
+                <br><br>
+                <h1>FAQ</h1>
+                <h2>Why is it called the 'Hack Lab' and not the 'Hack Club'?</h2>
+                <p>
+                    The original name for the club (before we integrated into Hack Club) was the <i>Code Lab.</i>
+                    When changing our name to fit the Hack Club, we thought it would be unique to give it another name that reflected
+                    our roots.
+                </p><br>
+
+                <br>
+                <h1>Important Links</h1>
+                <p>
+                    <a href="https://github.com/IHS-HackLab" target="_blank">Our GitHub</a><br>
+                    <a href="https://hackclub.com/" target="_blank">The Official Hack Club Website</a>
+                </p>
+
+                <br><br>
+                
+                <p>
+                    Questions? Email me at <i>53003029@student.imperialusd.org</i>
+                </p>
+
+                <dot></dot>
+            </div>
+
+            <div id="membersblk" class="main right">
+                <h1 class="blkheader">Our Members</h1>
+            </div>
+
+            <div id="links">
+                <a href="#home" onclick="menu('home')">Home</a>
+                <a href="#about" onclick="menu('about')">About Us</a>
+                <a href="#members" onclick="menu('members')">Our Members</a>
+            </div>
+
+            <button id="leftbutton" class="dirbutton disabled" onclick="cycle(false)"><i class="fa-solid fa-arrow-left"></i></button>
+            <button id="rightbutton" class="dirbutton" onclick="cycle(true)"><i class="fa-solid fa-arrow-right"></i></button>
         </main>
 
-        <script src="js/scroll_topbar.js"></script>
+        <script id="headlinescript">
+            const headlines_ele = document.getElementById('headlines');
+            const headlinetext_ele = document.getElementById('headline_text');
+
+            const headlines = [
+                'WELCOME TO THE IHS HACK LAB',
+                'THE WEBSITE HAS BEEN UPDATED',
+            ]
+            let w = 0;
+
+            function init_headline() {
+                headlinetext_ele.innerHTML = '';
+                for (let hl of headlines) {
+                    headlinetext_ele.innerHTML += `<span>${hl}<span>&nbsp;&nbsp;::&nbsp;&nbsp;`;
+                }
+                let full = headlinetext_ele.innerHTML;
+                //console.log(headlinetext_ele.offsetWidth);
+                w = headlinetext_ele.offsetWidth;
+                let amt = ((headlines_ele.offsetWidth / w) | 0) + 2;
+
+                for (let i = 1; i < amt; i++) {
+                    headlinetext_ele.innerHTML += full;
+                }
+            }
+
+            let st = Date.now();
+            function update_headline() {
+                /*console.log('afsfefwef');
+                requestAnimationFrame(() => {
+                    headlinetext_ele.style.left = `${-w}px`;
+                    requestAnimationFrame(() => {
+                        headlinetext_ele.style.transition = `all ${w/100}s linear`;
+                        requestAnimationFrame(() => {
+                            headlinetext_ele.style.left = `0px`;
+                            setTimeout(update_headline, (w/100)*1000);
+                            requestAnimationFrame(() => {
+                                headlinetext_ele.style.transition = ``;
+                            })
+                        })
+                    })
+                })*/
+
+                headlinetext_ele.style.left = `${(Date.now() - st)/5 % w - w}px`;
+            }
+
+            init_headline();
+            onresize = init_headline;
+            update_headline();
+        </script>
+        <script id="titlescript">
+            const text = 'Welcome to the IHS Hack Lab';
+            const title_ele = document.getElementById('title');
+            function do_title() {
+                let incomplete_title = '';
+                for (let i in text) {
+                    setTimeout(() => {
+                        title_ele.innerHTML += text[i];
+                    }, i * 50);
+                }
+            }
+            do_title();
+        </script>
+        <script id="memberscript">
+            const membersblk = document.getElementById('membersblk');
+            const members = [
+                {
+                    name: 'Ashton Havens',
+                    short: 'Ashton',
+                    role: 'President',
+                    membersite: 'membersites/ashton/ashton.html',
+                    quote: '[[insert inspirational quote here]]',
+                    staff: true,
+                    pic: 'memberphotos/ashton_img.png',
+                },
+                {
+                    name: 'Samuel Walker',
+                    short: 'Sam',
+                    role: 'Secretary',
+                    membersite: null,
+                    quote: null,
+                    staff: true,
+                    pic: 'memberphotos/sam_img.png',
+                },
+                {
+                    name: 'Zee Valenzuela',
+                    short: 'Zee',
+                    role: 'Treasurer',
+                    membersite: null,
+                    quote: null,
+                    staff: true,
+                    pic: 'memberphotos/zee_img.png',
+                },
+                {
+                    name: 'Isabel Lepe',
+                    short: 'Isabel',
+                    role: 'Marketeer',
+                    membersite: null,
+                    quote: null,
+                    staff: true,
+                    pic: 'memberphotos/isabel_img.png',
+                },
+                {
+                    name: 'Cody Shultz',
+                    short: 'Cody',
+                    role: 'Mascot(?)',
+                    membersite: null,
+                    quote: null,
+                    staff: true,
+                    pic: 'memberphotos/cody_img.png',
+                },
+                {
+                    name: 'Rose Vargas',
+                    short: 'Rose',
+                    role: 'Member at Large',
+                    membersite: null,
+                    quote: null,
+                    staff: true,
+                    pic: 'memberphotos/rose_img.png',
+                },
+                {
+                    name: 'Rabi Islam',
+                    short: 'Rabi',
+                    role: 'Design Partner',
+                    membersite: null,
+                    quote: 'When tempted to fight fire with fire, remember that the fire department generally uses water.',
+                    staff: false,
+                    pic: 'memberphotos/rabi_img.png',
+                },
+            ]
+
+            for (let member of members) {
+                membersblk.innerHTML += 
+                `
+                <div class="member">
+                    <img src="${member.pic}">
+                    <p>
+                        <span>${member.name}</span><br>
+                        <i>${member.role}</i><br>
+                        ${member.quote === null ? '' : `<br>"${member.quote}"<br>`}<br>
+                        ${member.membersite === null ? '' : `<a href="${member.membersite}">${member.short}'s Membersite</a>`}
+                    </p>
+                </div>
+                `;
+            }
+            membersblk.innerHTML += '<dot></dot>'
+
+        </script>
+        <script id="linksscript">
+            const l_button = document.getElementById('leftbutton')
+            const r_button = document.getElementById('rightbutton')
+            const blks = [
+                'home',
+                'about',
+                'members',
+            ];
+            var cblk = 0;
+
+            function menu(place) {
+                let blk = document.getElementById(`${place}blk`);
+                blk.className = 'main visible';
+                cblk = blks.indexOf(place)
+
+                if (cblk === 0) {
+                    l_button.className = 'dirbutton disabled';
+                    r_button.className = 'dirbutton';
+                } else if (cblk === blks.length-1) {
+                    r_button.className = 'dirbutton disabled';
+                    l_button.className = 'dirbutton';
+                } else {
+                    l_button.className = 'dirbutton';
+                    r_button.className = 'dirbutton';
+                }
+
+                var left = true;
+                for (let b of blks) {
+                    if (b === place) {
+                        left = false;
+                    } else if (left) {
+                        document.getElementById(b+'blk').className = 'main left';
+                    } else {
+                        document.getElementById(b+'blk').className = 'main right';
+                    }
+                }
+            }
+
+            function cycle(dir) {
+                if (dir) {
+                    cblk += 1;
+                    if (cblk >= blks.length) {
+                        cblk -= 1;
+                    }
+                } else {
+                    cblk -= 1;
+                    if (cblk < 0) {
+                        cblk += 1;
+                    }
+                }
+                window.location.hash = blks[cblk]
+                menu(blks[cblk]);
+            }
+
+            function deliver_to_link_on_load() {
+                let match = location.hash;
+                if (match !== '') {
+                    menu(match.substr(1));
+                }
+            }
+        </script>
+        <script id="frame">
+            function frame() {
+                update_headline();
+
+                if (document.hasFocus()) {
+                    requestAnimationFrame(frame);
+                }
+            }
+            frame();
+            onfocus = frame;
+
+            onload = () => {
+                deliver_to_link_on_load();
+
+                requestAnimationFrame(() => requestAnimationFrame(() => {
+                    for (let element of document.getElementsByClassName('main')) {
+                        element.style.transition = 'all 0.5s ease';
+                    }
+                }));
+            }
+        </script>
     </body>
 </html>
