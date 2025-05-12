@@ -27,6 +27,10 @@
                     display: none;/*
                     top: calc(var(---) * 600 - 10vw) !important;*/
                 }
+                .main {
+                    width: 85% !important;
+                    top: calc(50% - var(---) * 300) !important;
+                }
             }
             @media (min-height: 175vw) {
                 #links a {
@@ -36,26 +40,28 @@
 
             body {
                 background-color: #000000;
+                background-image: linear-gradient(to right, #000000, #011400, #000000);
                 color: #41ff41;
                 font-size: calc(var(---) * 16);
-                overflow: hidden;
+                overflow-x: hidden;
                 font-family: "Phantom Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             }
             
             #headlines {
-                font-family: 'Times New Roman', Times, serif;
-                position: absolute;
+                position: fixed;
                 left: 0;
                 top: 0;
                 width: 100vw;
                 height: calc(var(---) * 25);
                 font-size: calc(var(---) * 23);
                 color: #00ff00;
-                background-color: black;
                 align-content: center;
                 white-space: nowrap;
                 overflow: hidden;
                 user-select: none;
+                z-index: 100;
+
+                text-shadow: 0 0 calc(var(---) * 8) black, 0 0 calc(var(---) * 8) black, 0 0 calc(var(---) * 8) black;
             }
             #headline_text {
                 position: relative;
@@ -65,12 +71,14 @@
             .main {
                 position: absolute;
                 transform: translateX(-50%);
-                top: calc(50% - var(---) * 300);
+                top: calc(50% - var(---) * 350);
                 left: 50%;
                 text-align: center;
                 width: 600px;
-                overflow: hidden;
                 user-select: none;
+                filter: blur(calc(var(---) * 3)) saturate(0.2);
+                height: calc(50% + var(---) * 350);
+                overflow: hidden;
             }
             .main #logo {
                 width: calc(var(---) * 250);
@@ -80,6 +88,9 @@
                 opacity: 1;
                 transform: translateX(-50%);
                 user-select:text;
+                filter: blur(0) saturate(1);
+                height: auto;
+                overflow: visible;
             }
             .main.left {
                 opacity: 0;
@@ -88,6 +99,11 @@
             .main.right {
                 opacity: 0;
                 transform: translateX(50%);
+            }
+
+            .main p {
+                color: white;
+                font-size: calc(var(---) * 20);
             }
 
             #title {
@@ -106,7 +122,7 @@
 
             .dirbutton {
                 background-color: transparent;
-                border: 2px #161616 solid;
+                border: 2px #0e1d0d solid;
                 border-radius: calc(var(---) * 5);
                 position: absolute;
                 top: 50%;
@@ -117,12 +133,23 @@
                 font-size: calc(var(---) * 38);
                 padding: 0;
                 align-content: center;
+                box-shadow: 0 calc(var(---) * 2) calc(var(---) * 10) black;
+                transition: 0.25s ease;
             }
-            .dirbutton:hover {
+            .dirbutton.disabled {
+                filter: saturate(0);
+                background-color: #00000050;
+            }
+            .dirbutton:hover:not(.disabled) {
+                transform: translateY(-55%);
                 background-color: white;
                 border: none;
                 color: black;
             }
+            .dirbutton:active:not(.disabled) {
+                transform: translateY(-52%);
+            }
+
             #leftbutton {
                 right: calc(50% + 300px + var(---)*50);
             }
@@ -154,16 +181,40 @@
             }
 
             main {
-                overflow: hidden;
+                overflow-x: hidden;
                 position: absolute;
                 top: 0;
                 left: 0;
                 width: 100vw;
                 height: 100vh;
+                scrollbar-gutter: stable both-edges;
             }
 
             img {
                 user-select: none;
+                filter: drop-shadow(0 calc(var(---) * 3) calc(var(---) * 5) black);
+            }
+            
+            #title, .blkheader {
+                text-shadow: 0 calc(var(---) * 3) calc(var(---) * 5) black;
+            }
+
+            #aboutblk p img {
+                width: calc(var(---) * 150);
+            }
+            .blkheader {
+                font-size: calc(var(---) * 40);
+            }
+            .main h1:not(.blkheader):not(#title) {
+                color: #3bb13b;
+                font-weight: 500;
+            }
+            h2 {
+                font-weight: 500;
+                font-size: calc(var(---) * 24);
+                margin-top: calc(var(---) * 5);
+                margin-bottom: calc(var(---) * 5);
+                color: #a1ff9e;
             }
         </style>
     </head>
@@ -179,19 +230,50 @@
 
             <div id="homeblk" class="main visible">
                 <img id="logo" src="hacklab.png">
-                <p id="title">
+                <h1 id="title">
                     <noscript>
                         Welcome to the IHS Hack Lab
                     </noscript>
-                </p>
+                </h1>
             </div>
             
             <div id="aboutblk" class="main right">
-                <h1>About Us</h1>
+                <h1 class="blkheader">About Us</h1>
+                <p>
+                    We are the official <a href="https://hackclub.com/" target="_blank">Hack Club</a> of <a href="https://ihs.imperialusd.org/" target="_blank">Imperial High School</a>.
+                    <br><br>
+                    <img src="hacklab thisisourlogo.png" style="margin-right: 30px;">
+                    <img src="hackclublogo.png">
+                    <br><br>
+                    We are a club dedicated to anything programming-related. We participate in Hackathons, collaborate on projects, and create games.
+                </p>
+                <br><br>
+                <h1>What is Hack Club?</h1>
+                <p>
+                    Hack Club is an international organization of teenagers who like to program. Tens of thousands of students from
+                    around the world participate in different coding-related activities through Hack Club, such as Hackathons and
+                    other projects.
+                    <br><br>
+                    You can find their website <a href="https://hackclub.com/">here</a>.
+                    <br><br>
+                    The Hack Lab is Imperial High School's Hack Club. As an official Hack Club, we will participate in
+                    various Hack Club activities, such as <a href="https://boba.hackclub.com/">Boba Drops</a>,
+                    <a href="https://fraps.hackclub.com/">Hackaccino</a>, and <a href="https://sprig.hackclub.com/">Sprig</a>.
+                    <br><br>
+                    In the future, we may participate in real-life programming activites called <a href="https://hackclub.com/hackathons/">Hackathons</a>.
+                </p>
+                <br><br>
+                <h1>FAQ</h1>
+                <h2>Why is it called the 'Hack Lab' and not the 'Hack Club'?</h2>
+                <p>
+                    The original name for the club (before we integrated into Hack Club) was the <i>Code Lab.</i>
+                    When changing our name to fit the Hack Club, we thought it would be unique to give it another name that reflected
+                    our roots.
+                </p><br>
             </div>
 
             <div id="membersblk" class="main right">
-                <h1>Our Members</h1>
+                <h1 class="blkheader">Our Members</h1>
             </div>
 
             <div id="links">
@@ -200,7 +282,7 @@
                 <a href="#members" onclick="menu('members')">Our Members</a>
             </div>
 
-            <button id="leftbutton" class="dirbutton" onclick="cycle(false)"><i class="fa-solid fa-arrow-left"></i></button>
+            <button id="leftbutton" class="dirbutton disabled" onclick="cycle(false)"><i class="fa-solid fa-arrow-left"></i></button>
             <button id="rightbutton" class="dirbutton" onclick="cycle(true)"><i class="fa-solid fa-arrow-right"></i></button>
         </main>
 
@@ -334,6 +416,8 @@
             ]
         </script>
         <script id="linksscript">
+            const l_button = document.getElementById('leftbutton')
+            const r_button = document.getElementById('rightbutton')
             const blks = [
                 'home',
                 'about',
@@ -344,6 +428,18 @@
             function menu(place) {
                 let blk = document.getElementById(`${place}blk`);
                 blk.className = 'main visible';
+                cblk = blks.indexOf(place)
+
+                if (cblk === 0) {
+                    l_button.className = 'dirbutton disabled';
+                    r_button.className = 'dirbutton';
+                } else if (cblk === blks.length-1) {
+                    r_button.className = 'dirbutton disabled';
+                    l_button.className = 'dirbutton';
+                } else {
+                    l_button.className = 'dirbutton';
+                    r_button.className = 'dirbutton';
+                }
 
                 var left = true;
                 for (let b of blks) {
@@ -369,6 +465,7 @@
                         cblk += 1;
                     }
                 }
+                window.location.hash = blks[cblk]
                 menu(blks[cblk]);
             }
 
