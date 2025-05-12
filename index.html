@@ -31,6 +31,9 @@
                     width: 85% !important;
                     top: calc(50% - var(---) * 300) !important;
                 }
+                .member {
+                    margin-left: 0;
+                }
             }
             @media (min-height: 175vw) {
                 #links a {
@@ -79,6 +82,7 @@
                 filter: blur(calc(var(---) * 3)) saturate(0.2);
                 height: calc(50% + var(---) * 350);
                 overflow: hidden;
+                pointer-events: none;
             }
             .main #logo {
                 width: calc(var(---) * 250);
@@ -91,6 +95,7 @@
                 filter: blur(0) saturate(1);
                 height: auto;
                 overflow: visible;
+                pointer-events: auto;
             }
             .main.left {
                 opacity: 0;
@@ -216,6 +221,42 @@
                 margin-bottom: calc(var(---) * 5);
                 color: #a1ff9e;
             }
+
+            dot {
+                position: relative;
+                width: 1px;
+                height: 1px;
+                top: calc(var(---) * 49);
+                background-color: #000000;
+                display: block;
+            }
+
+
+            .member {
+                display: flex;
+                justify-content: left;
+                margin-top: calc(var(---) * 30);
+                margin-left: calc(var(---) * 40);
+                gap: calc(var(---) * 20);
+            }
+            .member:first-of-type {
+                margin-top: calc(var(---) * 75);
+            }
+            .member p {
+                margin: 0;
+                font-size: calc(var(---) * 20);
+                text-align: left;
+                color: #cacaca;
+            }
+            .member p span {
+                font-size: calc(var(---) * 25);
+                color: #ffffff;
+            }
+            .member img {
+                width: calc(var(---) * 175);
+                height: calc(var(---) * 175);
+                border-radius: 50%;
+            }
         </style>
     </head>
     <body>
@@ -223,7 +264,7 @@
         <main>
             <div id="headlines">
                 <noscript>
-                    Since you don't have Javascript enabled, just pretend there are some important messages up here.
+                    Since you don't have JavaScript enabled, just pretend there are some important messages up here.
                 </noscript>
                 <span id="headline_text"></span>
             </div>
@@ -235,6 +276,12 @@
                         Welcome to the IHS Hack Lab
                     </noscript>
                 </h1>
+                <p>
+                    <br><br><br>
+                    <a href="https://forms.gle/eBdScuAHDvufRwNy8" target="_blank"><img src="signup.png" style="width: calc(var(---) * 350); height: calc(var(---) * 200)"></a>
+                </p>
+
+                <dot></dot>
             </div>
             
             <div id="aboutblk" class="main right">
@@ -270,6 +317,21 @@
                     When changing our name to fit the Hack Club, we thought it would be unique to give it another name that reflected
                     our roots.
                 </p><br>
+
+                <br>
+                <h1>Important Links</h1>
+                <p>
+                    <a href="https://github.com/IHS-HackLab" target="_blank">Our GitHub</a><br>
+                    <a href="https://hackclub.com/" target="_blank">The Official Hack Club Website</a>
+                </p>
+
+                <br><br>
+                
+                <p>
+                    Questions? Email me at <i>53003029@student.imperialusd.org</i>
+                </p>
+
+                <dot></dot>
             </div>
 
             <div id="membersblk" class="main right">
@@ -349,6 +411,7 @@
             do_title();
         </script>
         <script id="memberscript">
+            const membersblk = document.getElementById('membersblk');
             const members = [
                 {
                     name: 'Ashton Havens',
@@ -406,7 +469,7 @@
                 },
                 {
                     name: 'Rabi Islam',
-                    short: 'Cody',
+                    short: 'Rabi',
                     role: 'Design Partner',
                     membersite: null,
                     quote: 'When tempted to fight fire with fire, remember that the fire department generally uses water.',
@@ -414,6 +477,23 @@
                     pic: 'memberphotos/rabi_img.png',
                 },
             ]
+
+            for (let member of members) {
+                membersblk.innerHTML += 
+                `
+                <div class="member">
+                    <img src="${member.pic}">
+                    <p>
+                        <span>${member.name}</span><br>
+                        <i>${member.role}</i><br>
+                        ${member.quote === null ? '' : `<br>"${member.quote}"<br>`}<br>
+                        ${member.membersite === null ? '' : `<a href="${member.membersite}">${member.short}'s Membersite</a>`}
+                    </p>
+                </div>
+                `;
+            }
+            membersblk.innerHTML += '<dot></dot>'
+
         </script>
         <script id="linksscript">
             const l_button = document.getElementById('leftbutton')
@@ -470,13 +550,11 @@
             }
 
             function deliver_to_link_on_load() {
-                let match = location.href.match(/#(.+)$/);
+                let match = location.hash.substr(1);
                 if (match !== null) {
-                    menu(match[1]);
+                    menu(match);
                 }
             }
-
-            
         </script>
         <script id="frame">
             function frame() {
