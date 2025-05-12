@@ -41,6 +41,10 @@
                 }
             }
 
+            html {
+                scrollbar-gutter: stable both-edges;
+            }
+            
             body {
                 background-color: #000000;
                 background-image: linear-gradient(to right, #000000, #011400, #000000);
@@ -185,16 +189,6 @@
                 color: #557c55;
             }
 
-            main {
-                overflow-x: hidden;
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100vw;
-                height: 100vh;
-                scrollbar-gutter: stable both-edges;
-            }
-
             img {
                 user-select: none;
                 filter: drop-shadow(0 calc(var(---) * 3) calc(var(---) * 5) black);
@@ -261,92 +255,90 @@
     </head>
     <body>
 
-        <main>
-            <div id="headlines">
+        <div id="headlines">
+            <noscript>
+                Since you don't have JavaScript enabled, just pretend there are some important messages up here.
+            </noscript>
+            <span id="headline_text"></span>
+        </div>
+
+        <div id="homeblk" class="main visible">
+            <img id="logo" src="hacklab.png">
+            <h1 id="title">
                 <noscript>
-                    Since you don't have JavaScript enabled, just pretend there are some important messages up here.
+                    Welcome to the IHS Hack Lab
                 </noscript>
-                <span id="headline_text"></span>
-            </div>
+            </h1>
+            <p>
+                <br><br><br>
+                <a href="https://forms.gle/eBdScuAHDvufRwNy8" target="_blank"><img src="signup.png" style="width: calc(var(---) * 350); height: calc(var(---) * 200)"></a>
+            </p>
 
-            <div id="homeblk" class="main visible">
-                <img id="logo" src="hacklab.png">
-                <h1 id="title">
-                    <noscript>
-                        Welcome to the IHS Hack Lab
-                    </noscript>
-                </h1>
-                <p>
-                    <br><br><br>
-                    <a href="https://forms.gle/eBdScuAHDvufRwNy8" target="_blank"><img src="signup.png" style="width: calc(var(---) * 350); height: calc(var(---) * 200)"></a>
-                </p>
+            <dot></dot>
+        </div>
+        
+        <div id="aboutblk" class="main right">
+            <h1 class="blkheader">About Us</h1>
+            <p>
+                We are the official <a href="https://hackclub.com/" target="_blank">Hack Club</a> of <a href="https://ihs.imperialusd.org/" target="_blank">Imperial High School</a>.
+                <br><br>
+                <img src="hacklab thisisourlogo.png" style="margin-right: 30px;">
+                <img src="hackclublogo.png">
+                <br><br>
+                We are a club dedicated to anything programming-related. We participate in Hackathons, collaborate on projects, and create games.
+            </p>
+            <br><br>
+            <h1>What is Hack Club?</h1>
+            <p>
+                Hack Club is an international organization of teenagers who like to program. Tens of thousands of students from
+                around the world participate in different coding-related activities through Hack Club, such as Hackathons and
+                other projects.
+                <br><br>
+                You can find their website <a href="https://hackclub.com/">here</a>.
+                <br><br>
+                The Hack Lab is Imperial High School's Hack Club. As an official Hack Club, we will participate in
+                various Hack Club activities, such as <a href="https://boba.hackclub.com/">Boba Drops</a>,
+                <a href="https://fraps.hackclub.com/">Hackaccino</a>, and <a href="https://sprig.hackclub.com/">Sprig</a>.
+                <br><br>
+                In the future, we may participate in real-life programming activites called <a href="https://hackclub.com/hackathons/">Hackathons</a>.
+            </p>
+            <br><br>
+            <h1>FAQ</h1>
+            <h2>Why is it called the 'Hack Lab' and not the 'Hack Club'?</h2>
+            <p>
+                The original name for the club (before we integrated into Hack Club) was the <i>Code Lab.</i>
+                When changing our name to fit the Hack Club, we thought it would be unique to give it another name that reflected
+                our roots.
+            </p><br>
 
-                <dot></dot>
-            </div>
+            <br>
+            <h1>Important Links</h1>
+            <p>
+                <a href="https://github.com/IHS-HackLab" target="_blank">Our GitHub</a><br>
+                <a href="https://hackclub.com/" target="_blank">The Official Hack Club Website</a>
+            </p>
+
+            <br><br>
             
-            <div id="aboutblk" class="main right">
-                <h1 class="blkheader">About Us</h1>
-                <p>
-                    We are the official <a href="https://hackclub.com/" target="_blank">Hack Club</a> of <a href="https://ihs.imperialusd.org/" target="_blank">Imperial High School</a>.
-                    <br><br>
-                    <img src="hacklab thisisourlogo.png" style="margin-right: 30px;">
-                    <img src="hackclublogo.png">
-                    <br><br>
-                    We are a club dedicated to anything programming-related. We participate in Hackathons, collaborate on projects, and create games.
-                </p>
-                <br><br>
-                <h1>What is Hack Club?</h1>
-                <p>
-                    Hack Club is an international organization of teenagers who like to program. Tens of thousands of students from
-                    around the world participate in different coding-related activities through Hack Club, such as Hackathons and
-                    other projects.
-                    <br><br>
-                    You can find their website <a href="https://hackclub.com/">here</a>.
-                    <br><br>
-                    The Hack Lab is Imperial High School's Hack Club. As an official Hack Club, we will participate in
-                    various Hack Club activities, such as <a href="https://boba.hackclub.com/">Boba Drops</a>,
-                    <a href="https://fraps.hackclub.com/">Hackaccino</a>, and <a href="https://sprig.hackclub.com/">Sprig</a>.
-                    <br><br>
-                    In the future, we may participate in real-life programming activites called <a href="https://hackclub.com/hackathons/">Hackathons</a>.
-                </p>
-                <br><br>
-                <h1>FAQ</h1>
-                <h2>Why is it called the 'Hack Lab' and not the 'Hack Club'?</h2>
-                <p>
-                    The original name for the club (before we integrated into Hack Club) was the <i>Code Lab.</i>
-                    When changing our name to fit the Hack Club, we thought it would be unique to give it another name that reflected
-                    our roots.
-                </p><br>
+            <p>
+                Questions? Email me at <i>53003029@student.imperialusd.org</i>
+            </p>
 
-                <br>
-                <h1>Important Links</h1>
-                <p>
-                    <a href="https://github.com/IHS-HackLab" target="_blank">Our GitHub</a><br>
-                    <a href="https://hackclub.com/" target="_blank">The Official Hack Club Website</a>
-                </p>
+            <dot></dot>
+        </div>
 
-                <br><br>
-                
-                <p>
-                    Questions? Email me at <i>53003029@student.imperialusd.org</i>
-                </p>
+        <div id="membersblk" class="main right">
+            <h1 class="blkheader">Our Members</h1>
+        </div>
 
-                <dot></dot>
-            </div>
+        <div id="links">
+            <a href="#home" onclick="menu('home')">Home</a>
+            <a href="#about" onclick="menu('about')">About Us</a>
+            <a href="#members" onclick="menu('members')">Our Members</a>
+        </div>
 
-            <div id="membersblk" class="main right">
-                <h1 class="blkheader">Our Members</h1>
-            </div>
-
-            <div id="links">
-                <a href="#home" onclick="menu('home')">Home</a>
-                <a href="#about" onclick="menu('about')">About Us</a>
-                <a href="#members" onclick="menu('members')">Our Members</a>
-            </div>
-
-            <button id="leftbutton" class="dirbutton disabled" onclick="cycle(false)"><i class="fa-solid fa-arrow-left"></i></button>
-            <button id="rightbutton" class="dirbutton" onclick="cycle(true)"><i class="fa-solid fa-arrow-right"></i></button>
-        </main>
+        <button id="leftbutton" class="dirbutton disabled" onclick="cycle(false)"><i class="fa-solid fa-arrow-left"></i></button>
+        <button id="rightbutton" class="dirbutton" onclick="cycle(true)"><i class="fa-solid fa-arrow-right"></i></button>
 
         <script id="headlinescript">
             const headlines_ele = document.getElementById('headlines');
