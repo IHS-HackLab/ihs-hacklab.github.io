@@ -4,6 +4,7 @@
         <title>The IHS Hack Lab</title>
         <link rel="icon" type="image/x-icon" href="hacklab.png">
         <link rel="stylesheet" href="css/fonts.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
         <script src="https://kit.fontawesome.com/82a70df38e.js" crossorigin="anonymous"></script>
 
@@ -28,8 +29,8 @@
                     top: calc(var(---) * 600 - 10vw) !important;*/
                 }
                 .main {
-                    width: 85% !important;
-                    top: calc(50% - var(---) * 300) !important;
+                    width: 85vw !important;
+                    top: calc(50vh - var(---) * 300) !important;
                 }
                 .member {
                     margin-left: 0;
@@ -42,7 +43,8 @@
             }
 
             html {
-                scrollbar-gutter: stable both-edges;
+                scrollbar-gutter: stable;
+                overflow-x: hidden;
             }
             
             body {
@@ -50,8 +52,8 @@
                 background-image: linear-gradient(to right, #000000, #011400, #000000);
                 color: #41ff41;
                 font-size: calc(var(---) * 16);
-                overflow-x: hidden;
                 font-family: "Phantom Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+                overflow-x: hidden;
             }
             
             #headlines {
@@ -67,7 +69,6 @@
                 overflow: hidden;
                 user-select: none;
                 z-index: 100;
-
                 text-shadow: 0 0 calc(var(---) * 8) black, 0 0 calc(var(---) * 8) black, 0 0 calc(var(---) * 8) black;
             }
             #headline_text {
@@ -77,16 +78,16 @@
 
             .main {
                 position: absolute;
-                transform: translateX(-50%);
-                top: calc(50% - var(---) * 350);
                 left: 50%;
+                top: calc(50vh - var(---) * 350);
                 text-align: center;
                 width: 600px;
                 user-select: none;
                 filter: blur(calc(var(---) * 3)) saturate(0.2);
-                height: calc(50% + var(---) * 350);
-                overflow: hidden;
+                height: calc(50vh + var(---) * 350);
                 pointer-events: none;
+                opacity: 0;
+                overflow: hidden;
             }
             .main #logo {
                 width: calc(var(---) * 250);
@@ -102,11 +103,9 @@
                 pointer-events: auto;
             }
             .main.left {
-                opacity: 0;
                 transform: translateX(-150%);
             }
             .main.right {
-                opacity: 0;
                 transform: translateX(50%);
             }
 
@@ -173,6 +172,7 @@
                 width: 100%;
                 align-items: center;
                 justify-content: center;
+                left: 0;
             }
             #links a {
                 white-space: nowrap;
@@ -276,7 +276,7 @@
 
             <dot></dot>
         </div>
-        
+    
         <div id="aboutblk" class="main right">
             <h1 class="blkheader">About Us</h1>
             <p>
