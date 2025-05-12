@@ -550,9 +550,9 @@
             }
 
             function deliver_to_link_on_load() {
-                let match = location.hash.substr(1);
-                if (match !== null) {
-                    menu(match);
+                let match = location.hash;
+                if (match !== '') {
+                    menu(match.substr(1));
                 }
             }
         </script>
