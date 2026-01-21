@@ -50,14 +50,14 @@
             body {
                 background-color: #000000;
                 background-image: linear-gradient(to right, #000000, #011400, #000000);
-                color: #41ff41;
+                color: #36cf0f;
                 font-size: calc(var(---) * 16);
                 font-family: "Phantom Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
                 overflow-x: hidden;
             }
             
             #headlines {
-                position: fixed;
+                position: absolute;
                 left: 0;
                 top: 0;
                 width: 100vw;
@@ -115,8 +115,9 @@
             }
 
             #title {
-                font-size: calc(var(---) * 45);
+                font-size: calc(var(---) * 50);
                 font-weight: bold;
+                height: 100px;
             }
 
             #dirbuttons {
@@ -186,7 +187,17 @@
                 color: #59da59;
             }
             a:visited {
-                color: #557c55;
+                color: #96d696;
+            }
+
+            .imblueandinbetween:link {
+                color: #96acd6;
+            }
+            .imblueandinbetween:link:active {
+                color: #5991da;
+            }
+            .imblueandinbetween:visited {
+                color: #96aad6;
             }
 
             img {
@@ -195,7 +206,7 @@
             }
             
             #title, .blkheader {
-                text-shadow: 0 calc(var(---) * 3) calc(var(---) * 5) black;
+                text-shadow: 0 calc(var(---) * 3) calc(var(---) * 8) black;
             }
 
             #aboutblk p img {
@@ -251,6 +262,24 @@
                 height: calc(var(---) * 175);
                 border-radius: 50%;
             }
+
+            .specialbutton {
+                border-radius: calc(var(---) * 5);
+                border: calc(var(---) * 1) #000000d0 solid;
+                background-color: #0000004b;
+                padding: calc(var(---) * 5) calc(var(---) * 8);
+                box-shadow: 0px calc(var(---) * 3) calc(var(---) * 20) #0000003a;
+
+                transition: 0.2s ease;
+                transition-property: background-color, color;
+            }
+            .specialbutton:hover {
+                background-color: #00000081;
+                color: #ddffd3;
+            }
+            .specialbutton.imblueandinbetween:hover {
+                color: #d3ebff;
+            }
         </style>
     </head>
     <body>
@@ -266,12 +295,16 @@
             <img id="logo" src="hacklab.png">
             <h1 id="title">
                 <noscript>
-                    Welcome to the IHS Hack Lab
+                    WELCOME TO THE IHS HACK LAB
                 </noscript>
             </h1>
             <p>
+                <br>
+                <a href="https://forms.gle/eBdScuAHDvufRwNy8" class="specialbutton" target="_blank" style="margin-right: 10px;">Click Here to Sign Up!</a>
+                <a href="https://discord.gg/etaSJrvbkm" class="specialbutton imblueandinbetween" target="_blank">Join Our Discord Server!</a>
                 <br><br><br>
-                <a href="https://forms.gle/eBdScuAHDvufRwNy8" target="_blank"><img src="signup.png" style="width: calc(var(---) * 350); height: calc(var(---) * 200)"></a>
+
+                <iframe src="https://discord.com/widget?id=1440119041149763678&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" style="box-shadow: 0 5px 8px #0000009f;"></iframe>
             </p>
 
             <dot></dot>
@@ -321,7 +354,7 @@
             <br><br>
             
             <p>
-                Questions? Email me at <i>53003029@student.imperialusd.org</i>
+                Questions? Email our president at <i>53003029@student.imperialusd.org</i>
             </p>
 
             <dot></dot>
@@ -390,13 +423,17 @@
             update_headline();
         </script>
         <script id="titlescript">
-            const text = 'Welcome to the IHS Hack Lab';
+            const text = 'WELCOME TO THE IHS\nHACK LAB';
             const title_ele = document.getElementById('title');
             function do_title() {
                 let incomplete_title = '';
                 for (let i in text) {
                     setTimeout(() => {
-                        title_ele.innerHTML += text[i];
+                        var t = text[i];
+                        if (t == '\n') {
+                            t = '<br>'
+                        }
+                        title_ele.innerHTML += t;
                     }, i * 50);
                 }
             }
@@ -415,6 +452,15 @@
                     pic: 'memberphotos/ashton_img.png',
                 },
                 {
+                    name: 'Isabel Lepe',
+                    short: 'Isabel',
+                    role: 'Vice President',
+                    membersite: null,
+                    quote: null,
+                    staff: true,
+                    pic: 'memberphotos/isabel_img.png',
+                },
+                {
                     name: 'Samuel Walker',
                     short: 'Sam',
                     role: 'Secretary',
@@ -431,15 +477,6 @@
                     quote: null,
                     staff: true,
                     pic: 'memberphotos/zee_img.png',
-                },
-                {
-                    name: 'Isabel Lepe',
-                    short: 'Isabel',
-                    role: 'Marketeer',
-                    membersite: null,
-                    quote: null,
-                    staff: true,
-                    pic: 'memberphotos/isabel_img.png',
                 },
                 {
                     name: 'Cody Shultz',
