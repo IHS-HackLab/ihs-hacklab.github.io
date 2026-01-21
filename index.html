@@ -280,6 +280,12 @@
             .specialbutton.imblueandinbetween:hover {
                 color: #d3ebff;
             }
+
+            #welcome_title_cont span {
+                opacity: 0;
+                transform: translateY(-50%);
+                transition: all ease 0.25s;
+            }
         </style>
     </head>
     <body>
@@ -297,15 +303,18 @@
                 <noscript>
                     WELCOME TO THE IHS HACK LAB
                 </noscript>
+                <div id="welcome_title_cont">
+                    <span>W</span><span>E</span><span>L</span><span>C</span><span>O</span><span>M</span><span>E</span> <span>T</span><span>O</span> <span>T</span><span>H</span><span>E</span> <span>I</span><span>H</span><span>S</span> <span>H</span><span>A</span><span>C</span><span>K</span> <span>L</span><span>A</span><span>B</span>
+                </div>
             </h1>
-            <p>
+            <div>
                 <br>
-                <a href="https://forms.gle/eBdScuAHDvufRwNy8" class="specialbutton" target="_blank" style="margin-right: 10px;">Click Here to Sign Up!</a>
-                <a href="https://discord.gg/etaSJrvbkm" class="specialbutton imblueandinbetween" target="_blank">Join Our Discord Server!</a>
+                <a href="https://forms.gle/eBdScuAHDvufRwNy8" class="specialbutton" target="_blank" style="margin-right: 10px;">Click&nbsp;Here&nbsp;to&nbsp;Sign&nbsp;Up!</a>
+                <a href="https://discord.gg/etaSJrvbkm" class="specialbutton imblueandinbetween" target="_blank">Join&nbsp;Our&nbsp;Discord&nbsp;Server!</a>
                 <br><br><br>
 
-                <iframe src="https://discord.com/widget?id=1440119041149763678&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" style="box-shadow: 0 5px 8px #0000009f;"></iframe>
-            </p>
+                <iframe src="https://discord.com/widget?id=1440119041149763678&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" style="box-shadow: 0 5px 8px #0000009f; max-width: 100%;"></iframe>
+            </div>
 
             <dot></dot>
         </div>
@@ -423,18 +432,14 @@
             update_headline();
         </script>
         <script id="titlescript">
-            const text = 'WELCOME TO THE IHS\nHACK LAB';
-            const title_ele = document.getElementById('title');
+            const title_cont = document.getElementById('welcome_title_cont');
+            const welcome_timing = 100;
             function do_title() {
-                let incomplete_title = '';
-                for (let i in text) {
+                for (let e in title_cont.children) {
                     setTimeout(() => {
-                        var t = text[i];
-                        if (t == '\n') {
-                            t = '<br>'
-                        }
-                        title_ele.innerHTML += t;
-                    }, i * 50);
+                        title_cont.children[e].style.opacity = '1';
+                        title_cont.children[e].style.transform = 'translateY(0%)';
+                    }, welcome_timing * e);
                 }
             }
             do_title();
