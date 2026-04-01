@@ -403,7 +403,9 @@
 
             const headlines = [
                 'WELCOME TO THE IHS HACK LAB',
-                'THE WEBSITE HAS BEEN UPDATED',
+                'THE OFFICIAL HACK CLUB OF IMPERIAL HIGH SCHOOL',
+                'COME JOIN THE FUN',
+                'HOT AND FRESH',
             ]
             let w = 0;
 
@@ -625,6 +627,15 @@
                     }
                 }));
             }
+        </script>
+        <script id="events">
+            addEventListener('keydown', (e) => {
+                if (e.key.toLowerCase() === 'a' || e.key.toLowerCase() === 'left') {
+                    cycle(false);
+                } else if (e.key.toLowerCase() === 'd' || e.key.toLowerCase() === 'right') {
+                    cycle(true);
+                }
+            })
         </script>
     </body>
 </html>
