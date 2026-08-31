@@ -12,7 +12,7 @@
             :root {
                 ---: 1px;
             }
-            @media (max-width: 1024px) {
+            @media (max-width: 1024px) { /* mobile orientation */
                 :root {
                     ---: 0.12vh;
                 }
@@ -49,7 +49,7 @@
             
             body {
                 background-color: #000000;
-                background-image: linear-gradient(to right, #000000, #011400, #000000);
+                background-image: linear-gradient(to right, #000000, #021800, #000000);
                 color: #36cf0f;
                 font-size: calc(var(---) * 16);
                 font-family: "Phantom Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -133,7 +133,7 @@
                 background-color: transparent;
                 border: 2px #0e1d0d solid;
                 border-radius: calc(var(---) * 5);
-                position: absolute;
+                position: fixed;
                 top: 50%;
                 transform: translateY(-50%);
                 width: calc(var(---) * 60);
@@ -143,11 +143,12 @@
                 padding: 0;
                 align-content: center;
                 box-shadow: 0 calc(var(---) * 2) calc(var(---) * 10) black;
-                transition: 0.25s ease;
+                transition: 0.1s ease;
             }
             .dirbutton.disabled {
                 filter: saturate(0);
                 background-color: #00000050;
+                color: #909090;
             }
             .dirbutton:hover:not(.disabled) {
                 transform: translateY(-55%);
@@ -235,6 +236,7 @@
                 margin-top: calc(var(---) * 5);
                 margin-bottom: calc(var(---) * 5);
                 color: #a1ff9e;
+                font-style: italic;
             }
 
             dot {
@@ -280,7 +282,7 @@
                 padding: calc(var(---) * 5) calc(var(---) * 8);
                 box-shadow: 0px calc(var(---) * 3) calc(var(---) * 20) #0000003a;
 
-                transition: 0.2s ease;
+                transition: 0.1s ease;
                 transition-property: background-color, color;
             }
             .specialbutton:hover {
@@ -322,12 +324,14 @@
             </h1>
             <div>
                 <br>
-                <a href="https://forms.gle/eBdScuAHDvufRwNy8" class="specialbutton" target="_blank" style="margin-right: 10px;">Click&nbsp;Here&nbsp;to&nbsp;Sign&nbsp;Up!</a>
-                <a href="https://discord.gg/etaSJrvbkm" class="specialbutton imblueandinbetween" target="_blank" style="margin-right: 10px;">Join&nbsp;Our&nbsp;Discord&nbsp;Server!</a>
-                <a href="https://www.instagram.com/ihshacklab" class="specialbutton impinkandinbetween" target="_blank">Follow&nbsp;Us&nbsp;on&nbsp;Instagram!</a>
+                <div style="line-height: 2.4;">
+                    <a href="https://forms.gle/eBdScuAHDvufRwNy8" class="specialbutton" target="_blank" style="margin-right: 10px;">Click&nbsp;Here&nbsp;to&nbsp;Sign&nbsp;Up!</a>
+                    <a href="https://discord.gg/etaSJrvbkm" class="specialbutton imblueandinbetween" target="_blank" style="margin-right: 10px;">Join&nbsp;Our&nbsp;Discord&nbsp;Server!</a>
+                    <a href="https://www.instagram.com/ihshacklab" class="specialbutton impinkandinbetween" target="_blank">Follow&nbsp;Us&nbsp;on&nbsp;Instagram!</a>
+                </div>
                 <br><br><br>
 
-                <iframe src="https://discord.com/widget?id=1440119041149763678&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" style="box-shadow: 0 5px 8px #0000009f; max-width: 100%;"></iframe>
+                <iframe id="discordiframe" src="about:blank" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" style="box-shadow: 0 5px 8px #0000009f; max-width: 100%;"></iframe>
             </div>
 
             <dot></dot>
@@ -360,6 +364,7 @@
             </p>
             <br><br>
             <h1>FAQ</h1>
+            
             <h2>Why is it called the 'Hack Lab' and not the 'Hack Club'?</h2>
             <p>
                 The original name for the club (before we integrated into Hack Club) was the <i>Code Lab.</i>
@@ -367,12 +372,19 @@
                 our roots.
             </p><br>
 
+            <h2>Will we be hacking here???</h2>
+            <p>
+                Not exactly. The use of the word <i>"hack"</i> is more akin to its use in the term <i>"life hack"</i>; the ultimate goal of the club is
+                to get you to think more proactively about the coding process and how you can use programming to achieve a goal.
+            </p>
+
             <br>
             <h1>Important Links</h1>
             <p>
                 <a href="https://github.com/IHS-HackLab" target="_blank">Our GitHub</a><br>
                 <a href="https://hackclub.com/" target="_blank">The Official Hack Club Website</a><br>
-                <a href="https://www.instagram.com/ihshacklab" target="_blank">Our Instagram</a>
+                <a href="https://www.instagram.com/ihshacklab" target="_blank">Our Instagram</a><br>
+                <a href="https://forms.gle/eBdScuAHDvufRwNy8" target="_blank">Sign Up</a>
             </p>
 
             <br><br>
@@ -406,6 +418,7 @@
                 'THE OFFICIAL HACK CLUB OF IMPERIAL HIGH SCHOOL',
                 'COME JOIN THE FUN',
                 'HOT AND FRESH',
+                '<a href="https://forms.gle/eBdScuAHDvufRwNy8" target="_blank">SIGN UP NOW</a>'
             ]
             let w = 0;
 
@@ -469,7 +482,7 @@
                     short: 'Ashton',
                     role: 'President',
                     membersite: 'membersites/ashton/ashton.html',
-                    quote: '[[insert inspirational quote here]]',
+                    quote: 'hello',
                     staff: true,
                     pic: 'memberphotos/ashton_img.png',
                 },
@@ -509,7 +522,7 @@
                     staff: true,
                     pic: 'memberphotos/cody_img.png',
                 },
-                {
+                /*{
                     name: 'Rose Vargas',
                     short: 'Rose',
                     role: 'Member at Large',
@@ -517,7 +530,7 @@
                     quote: null,
                     staff: true,
                     pic: 'memberphotos/rose_img.png',
-                },
+                },*/
                 {
                     name: 'Rabi Islam',
                     short: 'Rabi',
@@ -538,7 +551,7 @@
                         <span>${member.name}</span><br>
                         <i>${member.role}</i><br>
                         ${member.quote === null ? '' : `<br>"${member.quote}"<br>`}<br>
-                        ${member.membersite === null ? '' : `<a href="${member.membersite}">${member.short}'s Membersite</a>`}
+                        <!-- $ {member.membersite === null ? '' : \`<a href="${member.membersite}">$ {member.short}'s Membersite</a>\`} -->
                     </p>
                 </div>
                 `;
@@ -618,6 +631,8 @@
             frame();
             onfocus = frame;
 
+            onhashchange = deliver_to_link_on_load;
+
             onload = () => {
                 deliver_to_link_on_load();
 
@@ -626,6 +641,9 @@
                         element.style.transition = 'all 0.5s ease';
                     }
                 }));
+
+                //prevent iframe blocking of onload
+                document.getElementById('discordiframe').src = "https://discord.com/widget?id=1440119041149763678&theme=dark";
             }
         </script>
         <script id="events">
